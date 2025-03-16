@@ -4,11 +4,15 @@ from django.contrib.auth.password_validation import validate_password
 
 
 class UserSerializer(serializers.ModelSerializer):
+    balance = serializers.DecimalField(
+        source="profile.balance", max_digits=10, decimal_places=2, read_only=True
+    )
+
     password = serializers.CharField(write_only=True)
 
     class Meta:
         model = User
-        fields = ('id', 'username', 'email', 'password','first_name', 'last_name')
+        fields = ('id', 'username', 'email', 'password','first_name', 'last_name','balance')
         extra_kwargs = {
             'email': {'required': True},
             'password': {'required': True},
