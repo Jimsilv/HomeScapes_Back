@@ -12,3 +12,18 @@ class TransactionSerializer(serializers.ModelSerializer):
         if value <= 0:
             raise serializers.ValidationError("Amount must be greater than zero.")
         return value
+
+class WithdrawalSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Transaction
+        fields = ['id', 'amount', 'payment_method', 'status', 'created_at']
+        read_only_fields = ['id', 'status', 'created_at']
+
+    def validate_amount(self, value):
+        """Ensure the amount is greater than zero and does not exceed the user's balance."""
+        user_profile = self.context['request'].user.profile
+        if value <= 0:
+            raise serializers.ValidationError("Amount must be greater than zero.")
+        if value > user_profile.balance:
+            raise serializers.ValidationError("Insufficient balance.")
+        return value
