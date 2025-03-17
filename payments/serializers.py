@@ -27,3 +27,10 @@ class WithdrawalSerializer(serializers.ModelSerializer):
         if value > user_profile.balance:
             raise serializers.ValidationError("Insufficient balance.")
         return value
+
+class UserSummarySerializer(serializers.ModelSerializer):
+        """Serializer to return basic transaction details."""
+
+        class Meta:
+            model = Transaction
+            fields = ['transaction_type', 'amount', 'status', 'created_at']
