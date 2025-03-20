@@ -153,3 +153,8 @@ SIMPLE_JWT = {
 
 }
 
+
+PAYPAL_CLIENT_ID = "AVSs3wUqJ8MSVC2Te0wNWUKdEUChCM-GM14i_1ZA5IMkrCAhURi_b41kgvyfuP-In4UCkRvwHiLzoTXM"
+PAYPAL_CLIENT_SECRET = "EKWQYvk4xbkLlCQbebFLCq8DfCerffKuFRscGFhB34DL_RpXx2IAUrwcQ-pbpWtzV2vVLFVrqZg9U1Q9"
+PAYPAL_MODE = "sandbox"  # Change to "live" for production
+
